@@ -1,0 +1,17 @@
+---
+- hosts: [simpleservice]
+
+  tasks:
+    - name: Checkout simple service repo
+      git: force=yes repo=https://bitbucket.org/shekelonline/simple-service.git dest=/c/Users/venkat santosh/test/Shekel-Online-DevOps-assignment version={{branch_name}} depth=1
+
+    - name: Update application.properties
+      copy: src=application.properties-example dest=application.properties
+
+    - name: Set hostname variable
+      set_fact: host="{{ansible_hostname}}"
+
+    - name: Modify application.properties to use hostname instead of localhost
+      lineinfile: path=application.properties regexp=localhost line={{host}}
+
+      
