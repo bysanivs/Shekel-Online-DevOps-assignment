@@ -1,0 +1,4 @@
+
+
+# Run simple service playbook with branch name (master) as argument
+ansible-playbook SimpleService.yml -e "branch_name=master"
